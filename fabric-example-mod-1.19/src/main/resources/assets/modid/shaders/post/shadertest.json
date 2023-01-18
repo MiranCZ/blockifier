@@ -1,0 +1,60 @@
+{
+    "targets": [
+        "color",
+        "closest",
+        "final"
+    ],
+    "passes": [
+        {
+            "name": "average_color",
+            "intarget": "minecraft:main",
+            "outtarget": "color",
+            "uniforms": [
+                {"name":  "BlockSize", "values":  [8]}
+            ]
+        },
+        {
+            "name": "replace_by_closest",
+            "intarget": "color",
+            "outtarget": "closest",
+            "auxtargets": [
+                {
+                    "name": "PaletteSampler",
+                    "id": "palette",
+                    "width": 453,
+                    "height": 1,
+                    "bilinear": false
+                }
+            ]
+        },
+        {
+            "name": "blockify",
+            "intarget": "closest",
+            "outtarget": "final",
+            "uniforms": [
+                {"name":  "BlockSize", "values":  [8]}
+            ],
+            "auxtargets": [
+                {
+                    "name": "BlockSampler",
+                    "id": "blocks_8",
+                    "width": 7248,
+                    "height": 16,
+                    "bilinear": false
+                },
+                {
+                    "name": "PaletteSampler",
+                    "id": "palette",
+                    "width": 453,
+                    "height": 1,
+                    "bilinear": false
+                }
+            ]
+        },
+        {
+            "name": "blit",
+            "intarget": "final",
+            "outtarget": "minecraft:main"
+        }
+    ]
+}
