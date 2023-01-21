@@ -10,7 +10,7 @@
             "intarget": "minecraft:main",
             "outtarget": "color",
             "uniforms": [
-                {"name":  "BlockSize", "values":  [8]}
+                {"name":  "BlockSize", "values":  [1]}
             ]
         },
         {
@@ -20,9 +20,9 @@
             "auxtargets": [
                 {
                     "name": "PaletteSampler",
-                    "id": "palette",
-                    "width": 453,
-                    "height": 1,
+                    "id": "computed",
+                    "width": 1024,
+                    "height": 1024,
                     "bilinear": false
                 }
             ]
@@ -32,14 +32,14 @@
             "intarget": "closest",
             "outtarget": "final",
             "uniforms": [
-                {"name":  "BlockSize", "values":  [8]}
+                {"name":  "BlockSize", "values":  [1]}
             ],
             "auxtargets": [
                 {
                     "name": "BlockSampler",
-                    "id": "blocks_8",
-                    "width": 7248,
-                    "height": 16,
+                    "id": "palette",
+                    "width": 453,
+                    "height": 1,
                     "bilinear": false
                 },
                 {

@@ -21,23 +21,12 @@ void main() {
 
     ivec2 mod = ivec2(mod(realCoords.x, BlockSize), mod(realCoords.y, BlockSize));
 
-
-    //float pos = texture(DiffuseSampler, vec2(0,0)).r*16;
-    // float pos = 3*16;
-
-
-    //FIXME it doesnt choose corectly
     vec2 pixelpos = vec2(texCoord.x - multiplier.x*mod.x, texCoord.y - multiplier.y*mod.y);
     float blockPos =texture(DiffuseSampler, pixelpos).r;
 
-  /*  if (true){
-        fragColor = vec4(blockPos, 0, 0, 1);
-        return;
-    }*/
-
     if (BlockSize == 1) {
         fragColor = texture(PaletteSampler, vec2(blockPos, 0));
-        ///   return;
+        return;
     }
 
     vec2 sizeBlock = textureSize(BlockSampler, 0);
@@ -49,12 +38,7 @@ void main() {
 
     float modX = mod(realCoords.x, BlockSize);
     float modY = BlockSize - mod(realCoords.y, BlockSize);
-    //blockpos+modX*multiply.x,modY*multiply.y
 
 
     fragColor = texture(BlockSampler, vec2 (blockPos+modX*multiplyBlock.x, modY*multiplyBlock.y));
-    //    fragColor = texture(BlockSampler, vec2 (pos*multiply.x,modY*multiply.y));
-    // fragColor = vec4(1,1,1,1);
 }
-
-//

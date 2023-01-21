@@ -1,7 +1,5 @@
 package net.fabricmc.example;
 
-import net.fabricmc.example.image.ImageHelper;
-import net.fabricmc.example.image.SampleImages;
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
 

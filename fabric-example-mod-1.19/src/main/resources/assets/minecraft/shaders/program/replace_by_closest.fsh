@@ -9,40 +9,34 @@ uniform vec2 InSize;
 
 out vec4 fragColor;
 
-float getClosestColor(vec3 color);
-
 void main() {
-    if (texture(DiffuseSampler,texCoord).a == 0) {
+    vec4 color = texture(DiffuseSampler, texCoord);
+    if (color.a == 0) {
         fragColor = vec4(0,0,0,0);
         return;
     }
 
-    vec3 color = texture(DiffuseSampler,texCoord).rgb;
-    float pos = getClosestColor(color);
-    fragColor = vec4(pos,0,0,1);
-}
+    ivec3 colorInt = ivec3(color.r*127,color.g*127,color.b*127);
 
-float getClosestColor(vec3 color) {
+    int c = (colorInt.r << 14) | (colorInt.g << 7) | colorInt.b;
+
+    bool first = c%2==0;
+    int texturePos = c/2;
+
     vec2 size = textureSize(PaletteSampler,0);
-    float multiply = 1/size.x;
 
-    float pos = 0;
-    float bestScore = 4;
+    float xPos = texturePos%int(size.x);
+    float yPos = floor(texturePos/size.y);
 
-    for (float i = 0; i < size.x; i++) {
-            vec4 optionColor = texture(PaletteSampler, vec2(i/size.x, 0));
+    vec4 paletteColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
 
-            float r = abs(optionColor.r - color.r);
-            float g = abs(optionColor.g - color.g);
-            float b = abs(optionColor.b - color.b);
-
-            float score = r+g+b;
-            if (score < bestScore) {
-                bestScore = score;
-                pos = i;
-            }
-
+    float colorPos = 0;
+    if (first) {
+        colorPos = paletteColor.r*255 + paletteColor.g*255;
+    } else {
+        colorPos = paletteColor.b*255 + paletteColor.a*255-32;
     }
+    //FIXME 453 is fixed value for the length of the blocks
+    fragColor = vec4(colorPos/453,0,0,1);
 
-    return pos/size.x;
 }

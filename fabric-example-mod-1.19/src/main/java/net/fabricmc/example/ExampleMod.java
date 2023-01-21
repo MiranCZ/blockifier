@@ -15,7 +15,7 @@ public class ExampleMod implements ModInitializer {
 
 	public static int TEXTURE_SIZE = 8;
 	public static int NEW_TEXTURE_SIZE = 8;
-	public static boolean ENABLED = false;
+	public static boolean ENABLED = true;
 
 	public static NativeImageBackedTexture OVERLAY_TEXTURE;
 
