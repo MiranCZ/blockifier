@@ -28,7 +28,12 @@ void main() {
     vec2 pixelpos = vec2(texCoord.x - mod.x/InSize.x, texCoord.y - mod.y/InSize.y);
     vec2 sizeBlock = getSamplerSize();
 
-    float blockPos =  (round(texture(DiffuseSampler, pixelpos).r*453)*BlockSize+1)/sizeBlock.x;
+
+    vec4 paletteColor = texture(DiffuseSampler, pixelpos);
+
+    float colorPos =round( paletteColor.r*255) + round(paletteColor.g*255);
+    float blockPos = (colorPos*BlockSize+1)/sizeBlock.x;
+
 
     fragColor = getSamplerTexture(vec2 (blockPos+mod.x/sizeBlock.x,1- mod.y/sizeBlock.y - 1/sizeBlock.y));
 }

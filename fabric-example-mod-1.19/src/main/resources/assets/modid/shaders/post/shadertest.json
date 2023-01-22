@@ -21,8 +21,8 @@
                 {
                     "name": "PaletteSampler",
                     "id": "computed",
-                    "width": 1024,
-                    "height": 1024,
+                    "width": 1449,
+                    "height": 1449,
                     "bilinear": false
                 }
             ]

@@ -10,7 +10,7 @@ uniform vec2 InSize;
 out vec4 fragColor;
 
 void main() {
-    vec4 color = texture(DiffuseSampler, texCoord);
+    vec4 color =  texture(DiffuseSampler, texCoord);
     if (color.a == 0) {
         fragColor = vec4(0,0,0,0);
         return;
@@ -20,23 +20,10 @@ void main() {
 
     int c = (colorInt.r << 14) | (colorInt.g << 7) | colorInt.b;
 
-    bool first = c%2==0;
-    int texturePos = c/2;
-
     vec2 size = textureSize(PaletteSampler,0);
 
-    float xPos = mod(texturePos, int(size.x));
-    float yPos = floor(texturePos/size.y);
+    float xPos = mod(c, int(size.x))+1;
+    float yPos = floor(c/size.y)+1;
 
-    vec4 paletteColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
-
-    float colorPos = 0;
-    if (first) {
-        colorPos = paletteColor.r*255 + paletteColor.g*255;
-    } else {
-        colorPos = paletteColor.b*255 + paletteColor.a*255;
-    }
-    //FIXME 453 is static value for the length of the blocks
-    fragColor =  vec4(colorPos/453,0,0,1);
-
+    fragColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
 }
