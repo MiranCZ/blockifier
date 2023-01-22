@@ -39,9 +39,10 @@ public class creator {
                         rg[0] = val1;
                         rg[1] = val2;
                     } else {
-                        g2d.setColor(new Color(rg[0], rg[1], val1, val2+32));
+                        g2d.setColor(new Color(rg[0], rg[1], val2, val1));
                         g2d.fillRect(xPos, yPos, 1, 1);
                     }
+
 
                 }
 
@@ -49,7 +50,7 @@ public class creator {
         }
 
         g2d.dispose();
-        ImageIO.write(finalImg, "PNG", new File("computed.png"));
+        ImageIO.write(finalImg, "PNG", new File("clr.png"));
     }
 
     private static int searchInPalette(BufferedImage palette, Color color) {

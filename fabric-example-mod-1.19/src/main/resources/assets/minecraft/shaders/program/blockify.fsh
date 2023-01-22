@@ -1,8 +1,12 @@
 #version 150
 
 uniform sampler2D DiffuseSampler;
-uniform sampler2D BlockSampler;
-uniform sampler2D PaletteSampler;
+
+uniform sampler2D BlockSamplerx16;
+uniform sampler2D BlockSamplerx8;
+uniform sampler2D BlockSamplerx4;
+uniform sampler2D BlockSamplerx2;
+uniform sampler2D BlockSamplerx1;
 
 in vec2 texCoord;
 
@@ -13,32 +17,52 @@ uniform float BlockSize;
 
 out vec4 fragColor;
 
+vec2 getSamplerSize();
+vec4 getSamplerTexture(vec2 coords);
 
 void main() {
-    vec2 size = textureSize(DiffuseSampler, 0);
-    vec2 multiplier = vec2(1/size.x, 1/size.y);
-    ivec2 realCoords = ivec2(texCoord.x * size.x, texCoord.y * size.y);
+    ivec2 realCoords = ivec2(texCoord.x * InSize.x, texCoord.y * InSize.y);
 
     ivec2 mod = ivec2(mod(realCoords.x, BlockSize), mod(realCoords.y, BlockSize));
 
-    vec2 pixelpos = vec2(texCoord.x - multiplier.x*mod.x, texCoord.y - multiplier.y*mod.y);
-    float blockPos =texture(DiffuseSampler, pixelpos).r;
+    vec2 pixelpos = vec2(texCoord.x - mod.x/InSize.x, texCoord.y - mod.y/InSize.y);
+    vec2 sizeBlock = getSamplerSize();
 
+    float blockPos =  (round(texture(DiffuseSampler, pixelpos).r*453)*BlockSize+1)/sizeBlock.x;
+
+    fragColor = getSamplerTexture(vec2 (blockPos+mod.x/sizeBlock.x,1- mod.y/sizeBlock.y - 1/sizeBlock.y));
+}
+
+vec2 getSamplerSize() {
     if (BlockSize == 1) {
-        fragColor = texture(PaletteSampler, vec2(blockPos, 0));
-        return;
+        return textureSize(BlockSamplerx1,0);
+    }
+    if (BlockSize == 2) {
+        return textureSize(BlockSamplerx2,0);
+    }
+    if (BlockSize == 4) {
+        return textureSize(BlockSamplerx4,0);
+    }
+    if (BlockSize == 8) {
+        return textureSize(BlockSamplerx8,0);
     }
 
-    vec2 sizeBlock = textureSize(BlockSampler, 0);
-    vec2 multiplyBlock = vec2(1/sizeBlock.x, 1/sizeBlock.y);
+    return textureSize(BlockSamplerx16,0);
+}
 
-    blockPos*= textureSize(PaletteSampler,0).x;
-    blockPos *= BlockSize;
-    blockPos *= multiplyBlock.x;
+vec4 getSamplerTexture(vec2 coords) {
+    if (BlockSize == 1) {
+        return texture(BlockSamplerx1,coords);
+    }
+    if (BlockSize == 2) {
+        return texture(BlockSamplerx2,coords);
+    }
+    if (BlockSize == 4) {
+        return texture(BlockSamplerx4,coords);
+    }
+    if (BlockSize == 8) {
+        return texture(BlockSamplerx8,coords);
+    }
 
-    float modX = mod(realCoords.x, BlockSize);
-    float modY = BlockSize - mod(realCoords.y, BlockSize);
-
-
-    fragColor = texture(BlockSampler, vec2 (blockPos+modX*multiplyBlock.x, modY*multiplyBlock.y));
+    return texture(BlockSamplerx16,coords);
 }

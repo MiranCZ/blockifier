@@ -36,14 +36,35 @@
             ],
             "auxtargets": [
                 {
-                    "name": "BlockSampler",
-                    "id": "palette",
-                    "width": 453,
-                    "height": 1,
+                    "name": "BlockSamplerx16",
+                    "id": "blocks_16",
+                    "width": 7248,
+                    "height": 16,
                     "bilinear": false
                 },
                 {
-                    "name": "PaletteSampler",
+                    "name": "BlockSamplerx8",
+                    "id": "blocks_8",
+                    "width": 3624,
+                    "height": 8,
+                    "bilinear": false
+                },
+                {
+                    "name": "BlockSamplerx4",
+                    "id": "blocks_4",
+                    "width": 1812,
+                    "height": 4,
+                    "bilinear": false
+                },
+                {
+                    "name": "BlockSamplerx2",
+                    "id": "blocks_2",
+                    "width": 906,
+                    "height": 2,
+                    "bilinear": false
+                },
+                {
+                    "name": "BlockSamplerx1",
                     "id": "palette",
                     "width": 453,
                     "height": 1,

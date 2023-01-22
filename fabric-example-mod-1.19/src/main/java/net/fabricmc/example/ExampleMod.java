@@ -2,11 +2,15 @@ package net.fabricmc.example;
 
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ModInitializer;
+import net.minecraft.client.gl.GlUniform;
 import net.minecraft.client.render.*;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ExampleMod implements ModInitializer {
 
@@ -17,7 +21,7 @@ public class ExampleMod implements ModInitializer {
 	public static int NEW_TEXTURE_SIZE = 8;
 	public static boolean ENABLED = true;
 
-	public static NativeImageBackedTexture OVERLAY_TEXTURE;
+	public static List<GlUniform> sizeList = new ArrayList<>();
 
 	@Override
 	public void onInitialize() {

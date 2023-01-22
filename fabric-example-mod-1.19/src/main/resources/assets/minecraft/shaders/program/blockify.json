@@ -9,8 +9,11 @@
   "attributes": [ "Position" ],
   "samplers": [
     { "name": "DiffuseSampler" },
-    { "name": "BlockSampler" },
-    {"name":  "PaletteSampler"}
+    { "name": "BlockSamplerx16" },
+    { "name": "BlockSamplerx8" },
+    { "name": "BlockSamplerx4" },
+    { "name": "BlockSamplerx2" },
+    { "name": "BlockSamplerx1" }
   ],
   "uniforms": [
     { "name": "ProjMat",     "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },

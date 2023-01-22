@@ -25,7 +25,7 @@ void main() {
 
     vec2 size = textureSize(PaletteSampler,0);
 
-    float xPos = texturePos%int(size.x);
+    float xPos = mod(texturePos, int(size.x));
     float yPos = floor(texturePos/size.y);
 
     vec4 paletteColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
@@ -34,9 +34,9 @@ void main() {
     if (first) {
         colorPos = paletteColor.r*255 + paletteColor.g*255;
     } else {
-        colorPos = paletteColor.b*255 + paletteColor.a*255-32;
+        colorPos = paletteColor.b*255 + paletteColor.a*255;
     }
-    //FIXME 453 is fixed value for the length of the blocks
-    fragColor = vec4(colorPos/453,0,0,1);
+    //FIXME 453 is static value for the length of the blocks
+    fragColor =  vec4(colorPos/453,0,0,1);
 
 }

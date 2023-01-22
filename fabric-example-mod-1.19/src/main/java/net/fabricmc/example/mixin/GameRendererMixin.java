@@ -3,6 +3,7 @@ package net.fabricmc.example.mixin;
 
 import net.fabricmc.example.event.KeyInputHandler;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gl.GlUniform;
 import net.minecraft.client.gl.PostEffectProcessor;
 import net.minecraft.client.render.GameRenderer;
 import net.minecraft.client.util.Window;
@@ -31,6 +32,9 @@ public abstract class GameRendererMixin {
         KeyInputHandler.update();
         if (TEXTURE_SIZE != NEW_TEXTURE_SIZE) {
             TEXTURE_SIZE = NEW_TEXTURE_SIZE;
+            for (GlUniform uniform : sizeList) {
+                uniform.set((float) TEXTURE_SIZE);
+            }
         }
 
         MinecraftClient mc = MinecraftClient.getInstance();
