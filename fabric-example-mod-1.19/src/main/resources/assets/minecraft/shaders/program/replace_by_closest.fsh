@@ -24,6 +24,12 @@ void main() {
 
     float yPos = floor(c/size.y)+1;
     float xPos = mod(c, int(size.x))+1;
+    if (xPos >= size.x) {
+        xPos = size.x-1;
+    }
+    if (yPos >= size.y) {
+        yPos = size.y-1;
+    }
 
     fragColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
 }
