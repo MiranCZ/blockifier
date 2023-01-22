@@ -1,9 +1,9 @@
-package net.fabricmc.example;
+package me.miran.blockifier;
 
 import net.minecraft.client.gui.widget.SliderWidget;
 import net.minecraft.text.Text;
 
-import static net.fabricmc.example.ExampleMod.NEW_TEXTURE_SIZE;
+import static me.miran.blockifier.Main.NEW_TEXTURE_SIZE;
 
 
 public class TextureSizeSlider extends SliderWidget {

@@ -1,8 +1,7 @@
 {
     "targets": [
         "color",
-        "closest",
-        "final"
+        "closest"
     ],
     "passes": [
         {
@@ -10,7 +9,7 @@
             "intarget": "minecraft:main",
             "outtarget": "color",
             "uniforms": [
-                {"name":  "BlockSize", "values":  [1]}
+                {"name":  "BlockSize", "values":  [8]}
             ]
         },
         {
@@ -20,7 +19,7 @@
             "auxtargets": [
                 {
                     "name": "PaletteSampler",
-                    "id": "computed",
+                    "id": "colors",
                     "width": 1449,
                     "height": 1449,
                     "bilinear": false
@@ -28,11 +27,11 @@
             ]
         },
         {
-            "name": "blockify",
+            "name": "apply_blocks",
             "intarget": "closest",
-            "outtarget": "final",
+            "outtarget": "minecraft:main",
             "uniforms": [
-                {"name":  "BlockSize", "values":  [1]}
+                {"name":  "BlockSize", "values":  [8]}
             ],
             "auxtargets": [
                 {
@@ -65,17 +64,12 @@
                 },
                 {
                     "name": "BlockSamplerx1",
-                    "id": "palette",
+                    "id": "blocks_1",
                     "width": 453,
                     "height": 1,
                     "bilinear": false
                 }
             ]
-        },
-        {
-            "name": "blit",
-            "intarget": "final",
-            "outtarget": "minecraft:main"
         }
     ]
 }

@@ -22,8 +22,8 @@ void main() {
 
     vec2 size = textureSize(PaletteSampler,0);
 
-    float xPos = mod(c, int(size.x))+1;
     float yPos = floor(c/size.y)+1;
+    float xPos = mod(c, int(size.x))+1;
 
     fragColor = texture(PaletteSampler, vec2(xPos/size.x,yPos/size.y));
 }

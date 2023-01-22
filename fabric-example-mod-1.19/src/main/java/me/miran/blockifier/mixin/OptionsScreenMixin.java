@@ -1,7 +1,7 @@
-package net.fabricmc.example.mixin;
+package me.miran.blockifier.mixin;
 
 
-import net.fabricmc.example.TextureSizeSlider;
+import me.miran.blockifier.TextureSizeSlider;
 import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.gui.widget.GridWidget.Adder;
 import net.minecraft.text.Text;
@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import static net.fabricmc.example.ExampleMod.TEXTURE_SIZE;
+import static me.miran.blockifier.Main.TEXTURE_SIZE;
 
 
 @Mixin(OptionsScreen.class)

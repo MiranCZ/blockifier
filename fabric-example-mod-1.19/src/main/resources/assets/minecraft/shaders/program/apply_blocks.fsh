@@ -31,8 +31,8 @@ void main() {
 
     vec4 paletteColor = texture(DiffuseSampler, pixelpos);
 
-    float colorPos =round( paletteColor.r*255) + round(paletteColor.g*255);
-    float blockPos = (colorPos*BlockSize+1)/sizeBlock.x;
+    float colorPos = paletteColor.r*255 + paletteColor.g*255;
+    float blockPos = (colorPos*BlockSize+0.5)/sizeBlock.x;
 
 
     fragColor = getSamplerTexture(vec2 (blockPos+mod.x/sizeBlock.x,1- mod.y/sizeBlock.y - 1/sizeBlock.y));

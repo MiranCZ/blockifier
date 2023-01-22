@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "blockifier",
   "version": "${version}",
 
   "name": "Blockifier",
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/blockifier/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "me.miran.blockifier.Main"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "blockifier.mixins.json"
   ],
 
   "depends": {

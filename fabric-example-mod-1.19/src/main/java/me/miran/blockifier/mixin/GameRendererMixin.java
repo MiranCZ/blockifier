@@ -1,7 +1,7 @@
-package net.fabricmc.example.mixin;
+package me.miran.blockifier.mixin;
 
 
-import net.fabricmc.example.event.KeyInputHandler;
+import me.miran.blockifier.KeyInputHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gl.GlUniform;
 import net.minecraft.client.gl.PostEffectProcessor;
@@ -18,13 +18,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.io.IOException;
 
-import static net.fabricmc.example.ExampleMod.*;
+import static me.miran.blockifier.Main.*;
 
 @Mixin(GameRenderer.class)
 public abstract class GameRendererMixin {
 
     @Shadow @Final MinecraftClient client;
-    private PostEffectProcessor test = null;
+    private PostEffectProcessor effectProcessor = null;
     private Vec2f prevDimensions = new Vec2f(0,0);
 
     @Inject(method = "render", at = @At("TAIL"))
@@ -38,21 +38,21 @@ public abstract class GameRendererMixin {
         }
 
         MinecraftClient mc = MinecraftClient.getInstance();
-        if (test == null) {
+        if (effectProcessor == null) {
             try {
-                test = new PostEffectProcessor(mc.getTextureManager(),mc.getResourceManager(),mc.getFramebuffer(),new Identifier("modid","shaders/post/shadertest.json"));
+                effectProcessor = new PostEffectProcessor(mc.getTextureManager(),mc.getResourceManager(),mc.getFramebuffer(),new Identifier("blockifier","shaders/post/blockifier.json"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         }
         Window window = this.client.getWindow();
         if (prevDimensions.x != this.client.getWindow().getFramebufferWidth() || prevDimensions.y != this.client.getWindow().getFramebufferHeight()) {
-            test.setupDimensions(window.getFramebufferWidth(), window.getFramebufferHeight());
+            effectProcessor.setupDimensions(window.getFramebufferWidth(), window.getFramebufferHeight());
             prevDimensions = new Vec2f(window.getFramebufferWidth(),window.getFramebufferHeight());
         }
 
         if (ENABLED) {
-            test.render(0);
+            effectProcessor.render(0);
         }
     }
 

@@ -5,7 +5,7 @@
     "dstrgb": "zero"
   },
   "vertex": "sobel",
-  "fragment": "blockify",
+  "fragment": "apply_blocks",
   "attributes": [ "Position" ],
   "samplers": [
     { "name": "DiffuseSampler" },
