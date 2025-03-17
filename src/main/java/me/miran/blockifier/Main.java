@@ -1,10 +1,7 @@
 package me.miran.blockifier;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.gl.GlUniform;
-import net.minecraft.client.render.*;
-import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

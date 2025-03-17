@@ -23,9 +23,8 @@ public class TextureSizeSlider extends SliderWidget {
     }
 
     private int valueToSize() {
-        int size = (int) (value * 4);
-
-        if (size == 0) return 1;
+        int size = (int) (value * 5);
+        if (size == 5) size = 4;
 
         return (int) Math.pow(2,size);
     }

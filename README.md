@@ -11,9 +11,10 @@ I am quite happy with how it turned out, and it's still one of my favourite proj
 I don't plan to really support/maintain this project and am not entirely sure how stable/supported it is on difference devices.
 
 ## Features
-The shader can be enabled/disabled with **left shift**. There is a slide-bar in options screen to change the blocks size in pixels (16, 8, 4, 2 or 1). 
+The shader can be enabled/disabled with **left shift**. There is a slide-bar in options screen to change the blocks size in pixels (16, 8, 4, 2 or 1). I personally feel like 8 or 4 are the best ones.
 
 # Showcase
 
+![Screenshot](screenshot_3.png)
 ![Screenshot](screenshot_2.png)
 ![Screenshot](screenshot_1.png)
